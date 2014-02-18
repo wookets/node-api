@@ -4,22 +4,22 @@ var api = require('../');
 
 api.service('/admin', {
   access: ['admin'],
-  method: function(params, session, callback) {callback()}
+  fn: function(params, session, callback) {callback()}
 });
 api.service('/mixed', {
   access: ['admin', 'user'],
-  method: function(params, session, callback) {callback()}
+  fn: function(params, session, callback) {callback()}
 });
 api.service('/user', {
   access: ['user'],
-  method: function(params, session, callback) {callback()}
+  fn: function(params, session, callback) {callback()}
 });
 api.service('/public', {
   access: 'public',
-  method: function(params, session, callback) {callback()}
+  fn: function(params, session, callback) {callback()}
 });
 api.service('/deny', {
-  method: function(params, session, callback) {callback()}
+  fn: function(params, session, callback) {callback()}
 });
 
 public = {}

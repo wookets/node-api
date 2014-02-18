@@ -5,8 +5,8 @@ var api = require('../');
 
 describe('api', function() {
 
-  it('should have a check() function', function(done) {
-    assert(_.isFunction(api.check));
+  it('should have an exists() function', function(done) {
+    assert(_.isFunction(api.exists));
     done();
   });
 
