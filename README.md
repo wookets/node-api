@@ -3,18 +3,36 @@ An api registry service for node.
 
 ## Install
 
-In package.json, under dependencies, you can do...
+In package.json;
 
-```"api": "https://github.com/wookets/node-api/0.1.0"```
+```"api": "https://github.com/wookets/node-api/0.2.0"```
 
 ## Usage
 
 ```
 var api = require('api');
 
-api.service
+// define the service somewhere...
+api.service('/url/like', {
+  access: 'public',
+  params: {
+    name: {type: String, required: true}
+  },
+  fn: function(params, user, callback) {
+    callback(null, 'moogle');
+  }
+});
+
+// later on invoke the service somewhere else...
+var user = {roles: ['manager']}
+api.invoke('/url/like', {}, user, function(err, result) {
+  assert.equal(err.name, 'InvalidParam');
+  done();
+});
 
 
 ```
 
+Comes with built-in express support.
 
+Auto-generating documentation coming soon.
