@@ -5,7 +5,7 @@ An api registry service for node.
 
 In package.json;
 
-```"api": "https://github.com/wookets/node-api/0.2.0"```
+```"api": "https://github.com/wookets/node-api/tarball/0.2.0"```
 
 ## Usage
 
