@@ -10,7 +10,7 @@ api.exists = require('./lib/exists');
 // make sure service function is secured
 api.secure = require('./lib/secure');
 // make sure service params are validated
-api.validate = require('./lib/validate');
+api.validate = require('validate');
 // a route for express
 api.route = require('./lib/route');
 
