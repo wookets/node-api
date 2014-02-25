@@ -1,6 +1,6 @@
 {
   "name": "api",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "main": "./index",
   "author": "wookets <wookets@gmail.com>",
   "repository": {
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "lodash": "~2.4.1",
-    "validate": "https://github.com/wookets/javascript-validate/tarball/0.1.1"
+    "validate": "https://github.com/wookets/javascript-validate/tarball/0.1.2"
   },
   "devDependencies": {}
 }
