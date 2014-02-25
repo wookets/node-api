@@ -5,7 +5,7 @@ An api registry service for node.
 
 In package.json;
 
-```"api": "https://github.com/wookets/node-api/tarball/0.2.0"```
+```"api": "https://github.com/wookets/node-api/tarball/0.2.3"```
 
 ## Usage
 
@@ -29,10 +29,13 @@ api.invoke('/url/like', {}, user, function(err, result) {
   assert.equal(err.name, 'InvalidParam');
   done();
 });
-
-
 ```
 
-Comes with built-in express support.
+
+## Express support
+
+```
+app.use('/api', api.route); // any calls to /api and the service will be looked up
+```
 
 Auto-generating documentation coming soon.
