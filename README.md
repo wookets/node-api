@@ -33,10 +33,10 @@ api.invoke('/url/like', {}, user, function(err, result) {
 
 ##### Point of contention... Why is 'access' required?
 
-The property 'access' is required when registering a service because if you utilize express support below
-your api services will be exposed to the world. So forcing you as a developer to label access as something or
-even just 'public' to allow anyone to access the method is better than 'Oh, I forgot to label that / didnt know
-anyone in the world could call that'. Maybe I shouldn't force your hand to be held, but most service methods
+The property 'access' is required when registering a service because if you utilize express support (below)
+your api services will be exposed to the world. Forcing you as a developer to label access as something or
+even just 'public' to allow anyone to access the method is better than, "Oh, I forgot to label that / didnt know
+anyone in the world could call that." Maybe I shouldn't force your hand to be held, but most service methods
 should probably be private (at least 'user') anyway, or you can just override my secure method (see below) so...
 
 
