@@ -6,15 +6,15 @@ api.service('/exists', {
   fn: function() {}
 });
 
-describe('api.exists()', function() {
+describe('api.find()', function() {
 
   it('should confirm a valid service', function(done) {
-    assert(api.exists('/exists'));
+    assert(api.find(api.services, '/exists'));
     done();
   });
 
   it('should error on an invalid service', function(done) {
-    assert(!api.exists('/exists2'));
+    assert(!api.find(api.services, '/exists2'));
     done();
   });
 

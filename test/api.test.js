@@ -6,7 +6,7 @@ var api = require('../');
 describe('api', function() {
 
   it('should have an exists() function', function(done) {
-    assert(_.isFunction(api.exists));
+    assert(_.isFunction(api.find));
     done();
   });
 
