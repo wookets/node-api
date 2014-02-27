@@ -46,6 +46,21 @@ should probably be private (at least 'user') anyway, or you can just override my
 app.use('/api', api.route); // any calls to /api and the service will be looked up
 ```
 
+If you want it to pass you the req and res (express) from the route, you can do the following...
+
+```
+api.service('/path', {
+  params: {
+    req: {},
+    res: {} // you dont have to do both if you only need to access one
+  },
+  fn: (params, user, callback) {
+    params.req
+    params.res
+  }
+});
+```
+
 
 ## Additional Usage
 
