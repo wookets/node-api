@@ -24,8 +24,7 @@ describe('api.invoke() w/ req res', function() {
         done();
       }
     };
-    api.route(req, res, function(err) {});
-
+    api.route()(req, res, function(err) {});
   });
 
 });
