@@ -43,7 +43,7 @@ should probably be private (at least 'user') anyway, or you can just override my
 ## Express support
 
 ```
-app.use('/api', api.route); // any calls to /api and the service will be looked up
+app.use('/api', api.route()); // any calls to /api and the service will be looked up
 ```
 
 If you want it to pass you the req and res (express) from the route, you can do the following...
