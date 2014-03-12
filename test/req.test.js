@@ -4,12 +4,8 @@ var api = require('../');
 
 api.service('/req', {
   access: 'public',
-  params: {
-    req: {},
-    res: {}
-  },
-  fn: function(params, user, callback) {
-    callback(null, params);
+  fn: function(ctx) {
+    ctx.send(ctx);
   }
 });
 

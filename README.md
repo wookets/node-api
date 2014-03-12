@@ -1,11 +1,11 @@
 
-An api registry service for node.
+An api registry service for node / express, modeled after koa.
 
 ## Install
 
 In package.json;
 
-```"api": "https://github.com/wookets/node-api/tarball/0.3.0"```
+```"api": "https://github.com/wookets/node-api/tarball/0.4.0"```
 
 ## Usage
 
@@ -18,16 +18,19 @@ api.service('/url/like', {
   params: {
     name: {type: String, required: true}
   },
-  fn: function(params, user, callback) {
-    callback(null, 'moogle');
+  fn: function(ctx) {
+    ctx.send('moogle');
   }
 });
 
 // later on invoke the service somewhere else...
-var user = {roles: ['manager']}
-api.invoke('/url/like', {}, user, function(err, result) {
-  assert.equal(err.name, 'InvalidParam');
-  done();
+var ctx = {
+  params: {name: 'cloud'},
+  user: {roles: ['manager']}
+};
+api.invoke('/url/like', ctx, function(err, result) {
+  assert.equal(err.name, 'BadRequest');
+  assert.equal(err.status, 400);
 });
 ```
 
@@ -44,25 +47,20 @@ should probably be private (at least 'user') anyway, or you can just override my
 
 ```
 app.use('/api', api.route()); // any calls to /api and the service will be looked up
-```
 
-If you want it to pass you the req and res (express) from the route, you can do the following...
 
-```
 api.service('/path', {
-  params: {
-    req: {},
-    res: {} // you dont have to do both if you only need to access one
-  },
-  fn: (params, user, callback) {
-    params.req
-    params.res
+  params: {},
+  fn: (ctx) {
+    ctx.req
+    ctx.res
   }
 });
 ```
 
 
 ## Additional Usage
+
 
 In 0.3.0 the following was added.
 
@@ -116,6 +114,7 @@ api.secure = function(service, user, callback) {
   if (!_.any(service.access, function(role) {return _.contains(user.roles, role)})) {
     var err = Error('Not authorized to invoke the ' + service.path + ' service.');
     err.name = 'NotAuthorized';
+    err.status = 403;
     return callback(err);
   }
   // check secure function
