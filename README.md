@@ -5,7 +5,7 @@ An api registry service for node / express, modeled after koa.
 
 In package.json;
 
-```"api": "https://github.com/wookets/node-api/tarball/0.4.0"```
+```"api": "https://github.com/wookets/node-api/tarball/0.5.0"```
 
 ## Usage
 
@@ -18,42 +18,36 @@ api.service('/url/like', {
   params: {
     name: {type: String, required: true}
   },
-  fn: function(ctx) {
-    ctx.send('moogle');
+  fn: function(params, user, callback) {
+    callback(null, 'moogle');
   }
 });
 
 // later on invoke the service somewhere else...
-var ctx = {
-  params: {name: 'cloud'},
-  user: {roles: ['manager']}
-};
-api.invoke('/url/like', ctx, function(err, result) {
-  assert.equal(err.name, 'BadRequest');
-  assert.equal(err.status, 400);
+var params = {name: 'cloud'};
+var user = {roles: ['manager']};
+api.invoke('/url/like', params, user, function(err, result) {
+  assert.equal(result, 'moogle');
 });
 ```
-
-##### Point of contention... Why is 'access' required?
-
-The property 'access' is required when registering a service because if you utilize express support (below)
-your api services will be exposed to the world. Forcing you as a developer to label access as something or
-even just 'public' to allow anyone to access the method is better than, "Oh, I forgot to label that / didnt know
-anyone in the world could call that." Maybe I shouldn't force your hand to be held, but most service methods
-should probably be private (at least 'user') anyway, or you can just override my secure method (see below) so...
-
 
 ## Express support
 
 ```
-app.use('/api', api.route()); // any calls to /api and the service will be looked up
+// register it
+app.use('/api', api.route());
 
 
+// define it
 api.service('/path', {
-  params: {},
-  fn: (ctx) {
-    ctx.req
-    ctx.res
+  params: {
+    req: {} // special markers to pass thru to params
+    res: {}
+    files: {}
+  },
+  fn: (params, user, callback) {
+    params.req // the request
+    params.res // the response
   }
 });
 ```
