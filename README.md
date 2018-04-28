@@ -3,6 +3,8 @@ An api registry service for node / express, modeled after koa.
 
 ## Install
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/wookets/node-api.svg)](https://greenkeeper.io/)
+
 In package.json;
 
 ```"api": "https://github.com/wookets/node-api/tarball/0.5.0"```
